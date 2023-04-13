@@ -31,6 +31,8 @@ def authenticate_and_export_report(driver, wait, username, password):
         f"{password}\n"
     )
 
+    time.sleep(2)
+
     # Click the Export button
     element = wait.until(
         EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Export')]"))
@@ -162,4 +164,5 @@ if __name__ == "__main__":
         else f'{base_report_url}{report_options[args.type]["path"]}{args.period}',
     )
 
-    display_garmin_report(report_file)
+    if report_file:
+        display_garmin_report(report_file)
